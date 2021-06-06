@@ -1,61 +1,31 @@
 import React from 'react'
-import './App.css';
-import ProjectForm from './ProjectForm';
+import InternshipForm from './InternshipForm'
 
-class App extends React.Component {
-  
-  constructor(){
-    super();
-    this.state={
-      display_form:false,
-      profile:[]
-    }
-    this.handleClick=this.handleClick.bind(this)
-    this.fetchData=this.fetchData.bind(this)
-  }
-  
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
-  handleClick(){
-    this.setState({
-      display_form:true
-    })
-  }
+import ProjectForm from "./ProjectForm";
+import Profile from './Profile';
 
-
-  componentDidMount(){
-    this.fetchData()
-  }
-
-  fetchData(){
-    fetch('http://127.0.0.1:8000/profile/')
-    .then((response)=>(response.json()))
-    .then((data)=>{
-      this.setState({
-        profile:data
-      })
-      console.log(data)
-    })
-
-    console.log('STATE:',this.state.profile)
-  }
-
-  render(){
-    return (
-      <div className="App">
-
-
-        <div className="card">
-          <div className="card-body">
-            <p>{this.state.profile.stud_name}</p>
-          </div>
-        </div>
-        {
-          this.state.display_form ? 
-          <ProjectForm/>:<button className="btn btn-info" onClick={this.handleClick}>Add Project</button>
-        }
-      </div>
-    );
-  }
+function App() {
+  return (
+    
+  <Router>   
+    <div className="app">
+      <Switch>
+        <Route path="/internship">
+          <InternshipForm/>
+        </Route>
+        <Route path="/project">
+          <ProjectForm/>
+        </Route>
+        <Route path="/">
+          <Profile/>
+        </Route>
+      </Switch>
+    </div>
+  </Router>
+    
+  )
 }
 
-export default App;
+export default App
