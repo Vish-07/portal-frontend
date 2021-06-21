@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import InternshipForm from './InternshipForm'
 
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
@@ -9,6 +9,25 @@ import Register from './Register';
 import Login from './Login';
 
 function App() {
+  
+  const [update,setUpdate] = useState(false)
+  const [identity,setId] = useState(0)
+
+  const [obj,setObj] = useState({})
+
+
+  const handleUpdate = (i,instance)=>{
+    setUpdate(true)
+    setId(i)
+    setObj(instance)
+  }
+  
+  const handleNoUpdate=()=>{
+    setUpdate(false)
+    setId(0)
+    setObj({})
+  }
+
   return (
     
   <Router>   
@@ -21,13 +40,13 @@ function App() {
           <Login/>
         </Route>
         <Route path="/internship">
-          <InternshipForm/>
+          <InternshipForm id={1} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
         </Route>
         <Route path="/project">
-          <ProjectForm/>
+          <ProjectForm id={1} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
         </Route>
         <Route path="/">
-          <Profile/>
+          <Profile id={1} handleUpdate={handleUpdate}/>
         </Route>
       </Switch>
     </div>

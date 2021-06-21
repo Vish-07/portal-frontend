@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 
+
 function Register() {
     
     const [student,setStudent] = useState({})
@@ -13,7 +14,6 @@ function Register() {
         })
 
     }
-    
 
     // used for the csrf_token
     // copy this from django docs
@@ -33,11 +33,13 @@ function Register() {
         return cookieValue;
     }
 
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-        const csrftoken = getCookie('csrftoken');
 
-        var url = ''
+    const handleSubmit=(e)=>{
+        const url = 'http://127.0.0.1:8000/api/register-profile/'
+
+        e.preventDefault()
+
+        const csrftoken = getCookie('csrftoken');
 
         fetch(url ,{
                 method:'POST',
@@ -49,12 +51,14 @@ function Register() {
             })
             .then((response)=> {
                 setStudent({})
+                console.log('RESPONSE IS:',response)
             })
             .catch(function(error){
             console.log('ERROR:',error)
         })
 
     }
+
     
     return (
         <div className="container mt-5">
@@ -71,16 +75,9 @@ function Register() {
 
                 <input type="number" step="0.01" name="cgpa" onChange={handleChange} placeholder="CGPA"/>
 
-                <input type="password" name="password1" placeholder="Password" onChange={handleChange}/>
-
-                <input type="password" name="password2" placeholder="Confirm Password" onChange={handleChange}/>
-
-                <input type="file" name="profile_pic" className="btn btn-info"/>
-
-                <input type="file" name="resume" className="btn btn-info"/>
+                <input type="password" name="password" placeholder="Password" onChange={handleChange}/>
 
                 <input type="submit" value="Register" className="btn btn-warning" onClick={handleSubmit}/>
-
 
             </form> 
         </div>

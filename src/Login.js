@@ -4,8 +4,6 @@ function Login() {
     
     const [login,setLogin] = useState({})
 
-    const [loginStatus,setLoginStatus] = useState(false)
-
     const [token,setToken] = useState("")
 
     const handleChange = (e)=>{
