@@ -10,11 +10,17 @@ import Login from './Login';
 
 function App() {
   
+  const [isLogin,setIsLogin] = useState(false)
+
   const [update,setUpdate] = useState(false)
   const [identity,setId] = useState(0)
 
   const [obj,setObj] = useState({})
 
+
+  const handleLogin=(e)=>{
+      setIsLogin(true)
+  }
 
   const handleUpdate = (i,instance)=>{
     setUpdate(true)
@@ -37,16 +43,16 @@ function App() {
           <Register/>
         </Route>
         <Route path="/login">
-          <Login/>
+          <Login handleLogin={handleLogin} />
         </Route>
         <Route path="/internship">
-          <InternshipForm id={1} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
+          <InternshipForm id={1} login={isLogin} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
         </Route>
         <Route path="/project">
-          <ProjectForm id={1} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
+          <ProjectForm id={1} login={isLogin} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
         </Route>
         <Route path="/">
-          <Profile id={1} handleUpdate={handleUpdate}/>
+          <Profile id={1} login={isLogin} handleUpdate={handleUpdate}/>
         </Route>
       </Switch>
     </div>
