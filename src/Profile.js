@@ -2,7 +2,6 @@ import React,{useState,useEffect} from 'react'
 
 import { Link } from "react-router-dom";
 
-
 function Profile({id,handleUpdate}) {
 
     const [t,setTags] = useState([])
@@ -26,7 +25,7 @@ function Profile({id,handleUpdate}) {
         .then((data)=>{
             setProjects(data)
         })
-    },[id,projects])
+    },[id])
 
     useEffect(()=>{
         fetch(`http://127.0.0.1:8000/api/internship-list/${id}/`)
@@ -34,8 +33,23 @@ function Profile({id,handleUpdate}) {
         .then((data)=>{
             setInternships(data)
         })
-    },[id,internships])
+    },[id])
 
+    const fetchProjects=()=>{
+        fetch(`http://127.0.0.1:8000/api/project-list/${id}/`)
+        .then((response)=>response.json())
+        .then((data)=>{
+            setProjects(data)
+        })
+    }
+
+    const fetchInters=()=>{
+        fetch(`http://127.0.0.1:8000/api/internship-list/${id}/`)
+        .then((response)=>response.json())
+        .then((data)=>{
+            setInternships(data)
+        })
+    }
 
     const handleDelete = (type,id)=>{
 
@@ -47,13 +61,21 @@ function Profile({id,handleUpdate}) {
         })
         .then((response)=>{
             console.log("DELETE SUCCESS")
+            if(type === "project")
+            {
+                fetchProjects()
+            }
+            else
+            {
+                fetchInters()
+            }
+
         })
         .catch(function(error){
             console.log('ERROR:',error)
         })
 
     }
-
 
     return (
         <div className="container">
