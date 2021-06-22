@@ -3,6 +3,7 @@ import InternshipForm from './InternshipForm'
 
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
+
 import ProjectForm from "./ProjectForm";
 import Profile from './Profile';
 import Register from './Register';
@@ -10,6 +11,8 @@ import Login from './Login';
 
 function App() {
   
+
+  const [userId,setUserId] = useState(1)
   const [isLogin,setIsLogin] = useState(false)
 
   const [update,setUpdate] = useState(false)
@@ -17,9 +20,16 @@ function App() {
 
   const [obj,setObj] = useState({})
 
+  
 
-  const handleLogin=(e)=>{
-      setIsLogin(true)
+  const handleLogin=({token,id})=>{ 
+    if (token !== "")
+    {
+        console.log("here")
+        setIsLogin(true)
+        setUserId(id)
+    }
+    console.log(userId)
   }
 
   const handleUpdate = (i,instance)=>{
@@ -34,6 +44,11 @@ function App() {
     setObj({})
   }
 
+  const handleLogout=()=>{
+    setIsLogin(false)
+    setUserId(1)
+  }
+
   return (
     
   <Router>   
@@ -46,13 +61,13 @@ function App() {
           <Login handleLogin={handleLogin} />
         </Route>
         <Route path="/internship">
-          <InternshipForm id={1} login={isLogin} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
+          <InternshipForm id={userId} login={isLogin} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
         </Route>
         <Route path="/project">
-          <ProjectForm id={1} login={isLogin} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
+          <ProjectForm id={userId} login={isLogin} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
         </Route>
         <Route path="/">
-          <Profile id={1} login={isLogin} handleUpdate={handleUpdate}/>
+          <Profile id={userId} login={isLogin} handleUpdate={handleUpdate} handleLogout={handleLogout}/>
         </Route>
       </Switch>
     </div>

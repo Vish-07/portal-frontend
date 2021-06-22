@@ -51,7 +51,6 @@ function ProjectForm({id,identity,update,instance,handleNoUpdate}) {
             }
         }
 
-        
         setProject({
             ...project,
             tags:[i+1]

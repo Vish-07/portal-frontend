@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
 
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 
-function Profile({id,handleUpdate}) {
+function Profile({id,login,handleUpdate,handleLogout}) {
 
     const [t,setTags] = useState([])
 
@@ -77,6 +77,8 @@ function Profile({id,handleUpdate}) {
 
     }
 
+    if(!login){<Redirect path="/login"/>}
+
     return (
         <div className="container">
 
@@ -86,6 +88,7 @@ function Profile({id,handleUpdate}) {
             <Link to="/internship">
                 <button className="btn btn-success" >Add Internship</button>
             </Link>
+            <button className="btn btn-outline-primary" onClick={handleLogout}>Logout</button>
             {projects.map(function(project){
                 return <div className="card my-3" key={project.pk} >
                             <p>{project.title}</p>
@@ -115,7 +118,7 @@ function Profile({id,handleUpdate}) {
                             <button onClick={()=>handleDelete("internship",intern.pk)} className="btn btn-outline-danger" >Delete</button>        
                         </div> 
             })}
-
+            {<p>Hello</p>&&login}
         </div>
     )
 }

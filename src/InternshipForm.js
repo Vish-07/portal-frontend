@@ -16,7 +16,6 @@ function InternshipForm({id,identity,update,instance,handleNoUpdate}) {
     },[instance,update])
 
 
-
     const handleChange = (e)=>{
         const {name,value} = e.target
 
@@ -27,7 +26,8 @@ function InternshipForm({id,identity,update,instance,handleNoUpdate}) {
     }
 
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
+
         e.preventDefault()        
 
         var url = 'http://127.0.0.1:8000/api/add-internship/'
@@ -39,12 +39,12 @@ function InternshipForm({id,identity,update,instance,handleNoUpdate}) {
 
         fetch(url ,{
                 method:'POST',
-                headers:{
+                headers:{ 
                     'Content-type':'application/json',
                 },
                 body:JSON.stringify(internship)
             })
-            .then((response)=> {
+            .then((response)=>{
                 setInternship({})
                 console.log('RESPONSE IS:',response)
                 console.log("added")
@@ -55,17 +55,18 @@ function InternshipForm({id,identity,update,instance,handleNoUpdate}) {
             })
             .catch(function(error){
             console.log('ERROR:',error)
-        })
+            })
 
     }
 
+    
     return (
+
         <div className="card container mt-5">
             <form className="d-flex flex-column row justify-content-center" onSubmit={handleSubmit}>
 
                 <div className="d-flex flex-column col-md-3">
                     <input type="text" placeholder="Company Name" value={internship.company} name="company" onChange={handleChange} />
-
 
                     <input type="date" name="date_start" value={internship.date_start} placeholder="Joining Date" onChange={handleChange}/>
                     <input type="date" name="date_end" value={internship.date_end} placeholder="Ending date" onChange={handleChange} />
@@ -80,10 +81,9 @@ function InternshipForm({id,identity,update,instance,handleNoUpdate}) {
                     <input type="submit" value="ADD" className="btn btn-success"/>
 
                 </div>
-
-            </form>
-            
+            </form>        
         </div>
+
     )
 }
 

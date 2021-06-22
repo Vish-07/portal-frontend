@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 
-import {useHistory} from 'react-router-dom';
+import {useHistory,Link} from 'react-router-dom';
+
 
 function Register() {
     
@@ -17,7 +18,6 @@ function Register() {
         })
 
     }
-
 
     const handleSubmit=(e)=>{
         const url = 'http://127.0.0.1:8000/api/register-profile/'
@@ -61,6 +61,7 @@ function Register() {
 
                 <input type="submit" value="Register" className="btn btn-warning" onClick={handleSubmit}/>
 
+                <p>Already have an account,<Link to="login" className="btn btn-outline-primary">Login</Link></p>
             </form> 
         </div>
     )

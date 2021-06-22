@@ -1,6 +1,13 @@
 import React,{useState} from 'react'
 
-function Login() {
+import {useHistory,Link} from 'react-router-dom'
+
+
+function Login({handleLogin}) {
+
+    let history = useHistory()
+
+    const [msgs,setMsgs] = useState("")
     
     const [login,setLogin] = useState({})
 
@@ -32,6 +39,15 @@ function Login() {
         .then((response)=>response.json())
         .then((data)=>{
             setToken(data)
+            if(token.token!=="")
+            {
+                handleLogin(data)
+                history.push("/")
+            }
+            else
+            {
+                setMsgs(data.msg)
+            }
         })
         .catch(function(error){
             console.log('ERROR:',error)
@@ -51,8 +67,11 @@ function Login() {
                 <input type="password" name="password" placeholder="Password" onChange={handleChange}/>
 
                 <input type="submit" value="Login" className="btn btn-warning" onClick={handleSubmit}/>
+                
+                <p>Do not have an account,<Link to="register" className="btn btn-outline-primary" >Register</Link></p>
 
             </form>
+            {msgs}
         </div>
     )
 }
