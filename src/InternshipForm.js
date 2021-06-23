@@ -61,29 +61,73 @@ function InternshipForm({id,identity,update,instance,handleNoUpdate}) {
 
     
     return (
-
-        <div className="card container mt-5">
-            <form className="d-flex flex-column row justify-content-center" onSubmit={handleSubmit}>
-
-                <div className="d-flex flex-column col-md-3">
-                    <input type="text" placeholder="Company Name" value={internship.company} name="company" onChange={handleChange} />
-
-                    <input type="date" name="date_start" value={internship.date_start} placeholder="Joining Date" onChange={handleChange}/>
-                    <input type="date" name="date_end" value={internship.date_end} placeholder="Ending date" onChange={handleChange} />
-
-                    <input type="text" name="job_title" value={internship.job_title} placeholder="Intern Title" onChange={handleChange}/>
-                </div>
-                <div className="col-md-5">
-                    <textarea name="desc" value={internship.desc} onChange={handleChange}>
-                        
-                    </textarea>
-                    
-                    <input type="submit" value="ADD" className="btn btn-success"/>
-
-                </div>
-            </form>        
+        <div className="container shadow" style={{mystyle}}>
+      <h3 className="cover-image">Form for Internship Details</h3>
+      <form className="form container" onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Company Name"
+            aria-label="Company name"
+            name="CompanyName"
+            onChange={handleChange}
+            value={internship.company}
+          />
         </div>
-
+        <div className="row mb-3">
+          <div className="col">
+            <input
+              type="date"
+              className="form-control"
+              placeholder="Start Date"
+              aria-label="Start Date"
+              name="StartDate"
+              onChange={handleChange}
+              value={internship.date_start}
+            />
+          </div>
+          <div className="col">
+            <input
+              type="date"
+              className="form-control"
+              placeholder="End Date"
+              aria-label="End Date"
+              name="EndDate"
+              onChange={handleChange}
+              value={internship.date_end}
+            />
+          </div>
+        </div>
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Intern Title(Ex. SDE, Analyst, Web Developer(frontend, backend, fullstack))"
+            aria-label="Intern Title(Ex. SDE, Analyst, Web Developer(frontend, backend, fullstack))"
+            Name="InternTitle"
+            onChange={handleChange}
+            value={internship.job_title}
+          />
+        </div>
+        
+        <div className="input-group mb-3">
+          <span className="input-group-text">Brief Description</span>
+          <textarea className="form-control" aria-label="With textarea" name="Description" onChange={handleChange} value={internship.desc}></textarea>
+        </div>
+        {/* <div action="/action_page.php">
+          <label htmlFor="myfile">
+            Upload Internship Certificate or equivalent:{" "}
+          </label>
+          <input type="file" id="myfile" name="myfile" />
+          <br />
+          <br />
+        </div> */}
+        <button type="submit" className="btn stupo-btn-dark sm">
+          Submit
+        </button>
+      </form>
+    </div>
     )
 }
 
