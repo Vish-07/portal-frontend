@@ -44,24 +44,24 @@ function Register() {
     
     return (
         <div className="container mt-5">
-            <form style={{display:'flex',flexDirection:'column'}} className="col-6">
-                <input type="text" name="stud_name" placeholder="Name" onChange={handleChange}/>
+            <form className="form container">
+                <input className="form-control" type="text" name="stud_name" placeholder="Name" onChange={handleChange}/>
 
-                <input type="text" name="stud_id" placeholder="Student ID" onChange={handleChange}/>
+                <input className="form-control" type="text" name="stud_id" placeholder="Student ID" onChange={handleChange}/>
                 
-                <textarea name="desc" onChange={handleChange} placeholder="Description">
+                <textarea className="form-control" name="desc" onChange={handleChange} placeholder="Description">
 
                 </textarea>
 
-                <input type="email" name="email" placeholder="Email" onChange={handleChange}/>
+                <input className="form-control" type="email" name="email" placeholder="Email" onChange={handleChange}/>
 
-                <input type="number" step="0.01" name="cgpa" onChange={handleChange} placeholder="CGPA"/>
+                <input className="form-control" type="number" step="0.01" name="cgpa" onChange={handleChange} placeholder="CGPA"/>
 
-                <input type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                <input className="form-control" type="password" name="password" placeholder="Password" onChange={handleChange}/>
 
-                <input type="submit" value="Register" className="btn btn-warning" onClick={handleSubmit}/>
+                <input type="submit" value="Register" className="btn m-3 btn-sm stupo-btn-dark" onClick={handleSubmit}/>
 
-                <p>Already have an account,<Link to="login" className="btn btn-outline-primary">Login</Link></p>
+                <p>Already have an account,<Link to="login" className="btn m-3 btn-sm stupo-btn-dark">Login</Link></p>
             </form> 
         </div>
     )

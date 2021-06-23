@@ -61,14 +61,14 @@ function Login({handleLogin}) {
     return (
         <div className="container mt-5">  
 
-            <form style={{display:'flex',flexDirection:'column'}}>
-                <input type="text" name="stud_id" placeholder="StudentID" onChange={handleChange}/>
+            <form className="form container">
+                <input className="form-control" type="text" name="stud_id" placeholder="StudentID" onChange={handleChange}/>
 
-                <input type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                <input className="form-control" type="password" name="password" placeholder="Password" onChange={handleChange}/>
 
-                <input type="submit" value="Login" className="btn btn-warning" onClick={handleSubmit}/>
+                <input type="submit" value="Login" className="btn m-3 btn-sm stupo-btn-dark" onClick={handleSubmit}/>
                 
-                <p>Do not have an account,<Link to="register" className="btn btn-outline-primary" >Register</Link></p>
+                <p>Do not have an account,<Link to="register" className="btn m-3 btn-sm stupo-btn-dark">Register</Link></p>
 
             </form>
             {msgs}
