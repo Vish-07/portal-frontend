@@ -58,14 +58,22 @@ function Login({handleLogin}) {
         // localStorage.getItem("token")
     }
       
+
+    const mystyle={
+        maxWidth: "540px",
+    }
+
+
     return (
-        <div className="container mt-5">  
-
+        <div className="container shadow" style={{mystyle}}>
+            <h3 className="cover-image">Login</h3>
             <form className="form container">
-                <input className="form-control" type="text" name="stud_id" placeholder="StudentID" onChange={handleChange}/>
-
-                <input className="form-control" type="password" name="password" placeholder="Password" onChange={handleChange}/>
-
+                <div className="mb-3">
+                    <input className="form-control" type="text" name="stud_id" placeholder="StudentID" onChange={handleChange}/>
+                </div>
+                <div className="mb-3">
+                    <input className="form-control" type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                </div>
                 <input type="submit" value="Login" className="btn m-3 btn-sm stupo-btn-dark" onClick={handleSubmit}/>
                 
                 <p>Do not have an account,<Link to="register" className="btn m-3 btn-sm stupo-btn-dark">Register</Link></p>

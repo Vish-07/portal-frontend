@@ -6,7 +6,7 @@ import Title from './Title';
 
 import avatar from "./images/avatar.jpg"
 
-function Profile({id,login,handleUpdate,handleLogout}) {
+function Profile({id,login,handleUpdate,handleLogout,user}) {
 
     const [t,setTags] = useState([])
 
@@ -97,10 +97,10 @@ function Profile({id,login,handleUpdate,handleLogout}) {
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
-                            <h5 className="card-title">Student Name</h5>
-                            <p className="card-text">I am a prefinal year student pursuing my BTech in Computer Science and Engineering from VNIT, Nagpur.</p>
+                            <h5 className="card-title">{user.name}</h5>
+                            <p className="card-text">{user.desc}</p>
                             <p className="card-text"><small class="text-muted">Branch: CSE</small></p>
-                            <p className="card-text"><small class="text-muted">CGPA: 00</small></p>
+                            <p className="card-text"><small class="text-muted">CGPA: {user.cgpa}</small></p>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ function Profile({id,login,handleUpdate,handleLogout}) {
 
 
             <div className="container">
-                <button type="button" className="btn stupo-btn-dark m-3 sm"> <a href="abc@gmail.com">Email</a></button>
+                <button type="button" className="btn stupo-btn-dark m-3 sm"> <a href={user.email}>Email</a></button>
                 <button type="button" className="btn stupo-btn-dark m-3 sm"> <a href="https://github.com/Vish-07">GitHub</a></button>
                 <button type="button" className="btn stupo-btn-dark m-3 sm"> <a href="linkedIn.com">LinkedIn</a></button>
                 <Link to="/project">

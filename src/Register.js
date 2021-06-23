@@ -41,23 +41,39 @@ function Register() {
 
     }
 
+
+    const mystyle={
+        maxWidth: "540px",
+    }
     
     return (
-        <div className="container mt-5">
+        <div className="container shadow" style={{mystyle}}>
+            <h3 className="cover-image">Register</h3>
             <form className="form container">
-                <input className="form-control" type="text" name="stud_name" placeholder="Name" onChange={handleChange}/>
+                <div className="mb-3">
+                    <input className="form-control" type="text" name="stud_name" placeholder="Name" onChange={handleChange}/>
+                </div>
+                <div className="mb-3">
+                    <input className="form-control" type="email" name="email" placeholder="Email" onChange={handleChange}/>
+                </div>
+               
+                <div className="input-group mb-3">
+                    <span className="input-group-text">Brief Description</span>
+                    <textarea className="form-control" name="desc" onChange={handleChange} placeholder="Description"></textarea>
+                </div>
 
-                <input className="form-control" type="text" name="stud_id" placeholder="Student ID" onChange={handleChange}/>
-                
-                <textarea className="form-control" name="desc" onChange={handleChange} placeholder="Description">
+                <div className="row mb-3">
+                    <div className="col">
+                        <input className="form-control" type="text" name="stud_id" placeholder="Student ID" onChange={handleChange}/>
+                    </div>
+                    <div className="col">
+                        <input className="form-control" type="number" step="0.01" name="cgpa" onChange={handleChange} placeholder="CGPA"/>
+                    </div>
+                </div>
 
-                </textarea>
-
-                <input className="form-control" type="email" name="email" placeholder="Email" onChange={handleChange}/>
-
-                <input className="form-control" type="number" step="0.01" name="cgpa" onChange={handleChange} placeholder="CGPA"/>
-
-                <input className="form-control" type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                <div className="mb=3">
+                    <input className="form-control" type="password" name="password" placeholder="Password" onChange={handleChange}/>
+                </div>
 
                 <input type="submit" value="Register" className="btn m-3 btn-sm stupo-btn-dark" onClick={handleSubmit}/>
 

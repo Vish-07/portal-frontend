@@ -20,14 +20,22 @@ function App() {
 
   const [obj,setObj] = useState({})
 
-  
+  const [user,setUser]=useState({})
+ 
 
-  const handleLogin=({token,id})=>{ 
+  const handleLogin=({token,id,stud_name,desc,cgpa})=>{ 
     if (token !== "")
     {
         console.log("here")
         setIsLogin(true)
         setUserId(id)
+        setUser({
+          ...user,
+          name:stud_name,
+          desc:desc,
+          cgpa:cgpa
+        })
+        
     }
     console.log(userId)
   }
@@ -67,7 +75,7 @@ function App() {
           <ProjectForm id={userId} login={isLogin} update={update} identity={identity} instance = {obj} handleNoUpdate={handleNoUpdate}/>
         </Route>
         <Route path="/">
-          <Profile id={userId} login={isLogin} handleUpdate={handleUpdate} handleLogout={handleLogout}/>
+          <Profile user={user} id={userId} login={isLogin} handleUpdate={handleUpdate} handleLogout={handleLogout}/>
         </Route>
       </Switch>
     </div>
