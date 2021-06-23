@@ -4,6 +4,8 @@ import { Link,Redirect } from "react-router-dom";
 
 import Title from './Title';
 
+import avatar from "./images/avatar.jpg"
+
 function Profile({id,login,handleUpdate,handleLogout}) {
 
     const [t,setTags] = useState([])
@@ -91,7 +93,7 @@ function Profile({id,login,handleUpdate,handleLogout}) {
             <div className="card mb-3 container" style={{ mystyle }}>
                 <div className="row g-0">
                     <div className="col-md-3">
-                        <img src="#" alt="..." />
+                        <img src={avatar} alt="..." />
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">

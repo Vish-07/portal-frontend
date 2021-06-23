@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Logo from "./images/VNITLogo.png"
+
 function Title() {
     const mystyle={
         maxWidth: "540px",
@@ -8,7 +10,7 @@ function Title() {
         <div className="card mb-3 mt-2 container border-0" style={{mystyle}}>
             <div className="row g-0">
                 <div className="col-md-3">
-                    <img src="#" alt="VNIT Logo" className="img-responsive margin-top" />
+                    <img src={Logo} alt="VNIT Logo" className="img-responsive margin-top" />
                 </div>
                 <div className="col-md-8 mt-4">
                     <div className="card-body">
