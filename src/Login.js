@@ -39,6 +39,7 @@ function Login({handleLogin}) {
         .then((response)=>response.json())
         .then((data)=>{
             setToken(data)
+            console.log(data)
             if(token.token!=="")
             {
                 handleLogin(data)
@@ -47,6 +48,7 @@ function Login({handleLogin}) {
             else
             {
                 setMsgs(data.msg)
+                console.log("HERE")
             }
         })
         .catch(function(error){
@@ -77,9 +79,10 @@ function Login({handleLogin}) {
                 <input type="submit" value="Login" className="btn m-3 btn-sm stupo-btn-dark" onClick={handleSubmit}/>
                 
                 <p>Do not have an account,<Link to="register" className="btn m-3 btn-sm stupo-btn-dark">Register</Link></p>
-
+                
+                <h1>{msgs}</h1>
             </form>
-            {msgs}
+            
         </div>
     )
 }

@@ -41,7 +41,6 @@ function Register() {
 
     }
 
-
     const mystyle={
         maxWidth: "540px",
     }

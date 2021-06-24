@@ -55,6 +55,7 @@ function App() {
   const handleLogout=()=>{
     setIsLogin(false)
     setUserId(1)
+    setUser({})
   }
 
   return (

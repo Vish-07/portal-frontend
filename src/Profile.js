@@ -12,6 +12,8 @@ function Profile({id,login,handleUpdate,handleLogout,user}) {
 
     const [projects,setProjects] = useState([])
 
+    const [filterProjects,setFilterProjects] = useState([])
+
     const [internships,setInternships] = useState([])
 
     useEffect(()=>{
@@ -28,6 +30,7 @@ function Profile({id,login,handleUpdate,handleLogout,user}) {
         .then((response)=>response.json())
         .then((data)=>{
             setProjects(data)
+            setFilterProjects(data)
         })
     },[id])
 
@@ -81,10 +84,31 @@ function Profile({id,login,handleUpdate,handleLogout,user}) {
 
     }
 
-    if(!login){<Redirect path="/login"/>}
+
+    const handleFilter=(e)=>{
+
+        const {value} = e.target
+
+        if(value==="All")
+        {
+            setFilterProjects(projects)
+        }
+        else{
+            var filteredSet = projects.filter((project)=>{
+                return t[(project.tags[0])-1]?.tag_name === value
+            })
+
+            setFilterProjects(filteredSet)
+        }
+        
+    }
 
     const mystyle={
         maxWidth: "540px",
+    }
+
+    if(!login){
+        return <Redirect to="/login"/>
     }
 
     return (
@@ -99,8 +123,8 @@ function Profile({id,login,handleUpdate,handleLogout,user}) {
                         <div className="card-body">
                             <h5 className="card-title">{user.name}</h5>
                             <p className="card-text">{user.desc}</p>
-                            <p className="card-text"><small class="text-muted">Branch: CSE</small></p>
-                            <p className="card-text"><small class="text-muted">CGPA: {user.cgpa}</small></p>
+                            <p className="card-text"><small className="text-muted">Branch: CSE</small></p>
+                            <p className="card-text"><small className="text-muted">CGPA: {user.cgpa}</small></p>
                         </div>
                     </div>
                 </div>
@@ -120,12 +144,26 @@ function Profile({id,login,handleUpdate,handleLogout,user}) {
                 <button className="btn stupo-btn-dark m-3 sm" onClick={handleLogout}>Logout</button>
             </div>
 
+
+            <div className="container col-4 mx-5">
+                <select className="form-select mb-3" name="t" id="tag" onChange={handleFilter}>
+                    <option>All</option>
+                    {
+                        t.map(function(tag){
+                            return <option key={tag.id} >{tag.tag_name}</option>
+                        })
+                    }
+                            
+                </select>
+            </div>
+
+
             <hr />
             <h2>My Projects</h2>
             
-            {projects.map(function(project){
-                return <div>
-                            <div className="card mb-3 mt-2 container" style={{ mystyle }} key={project.pk} >
+            {filterProjects.map(function(project){
+                return <div key={project.pk}>
+                            <div className="card mb-3 mt-2 container" style={{ mystyle }} >
                                 <div className="row g-0">
                                     <div className="col-md-3 mt-2">
                                         <h3>{project.title}</h3>
@@ -151,11 +189,11 @@ function Profile({id,login,handleUpdate,handleLogout,user}) {
             })}
 
 
-            <h2>My Internships</h2>
+            <h2 >My Internships</h2>
 
             {internships.map(function(intern){
-                return  <div>
-                            <div className="card mb-3 mt-2 container" style={{ mystyle }} key={intern.pk}>
+                return  <div key={intern.pk}>
+                            <div className="card mb-3 mt-2 container" style={{ mystyle }}>
                                 <div className="row g-0">
                                     <div className="col-md-3 mt-2">
                                         <h3>{intern.company}</h3>

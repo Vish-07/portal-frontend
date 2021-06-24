@@ -84,7 +84,7 @@ function InternshipForm({id,identity,update,instance,handleNoUpdate}) {
                 </div>
 
                 <div className="mb-3">
-                    <input type="text" className="form-control" Name="Intern Title" name="job_title" value={internship.job_title} placeholder="Intern Title" onChange={handleChange}/>
+                    <input type="text" className="form-control" aria-label="Intern Title" name="job_title" value={internship.job_title} placeholder="Intern Title" onChange={handleChange}/>
                 </div>
 
                 <div className="input-group mb-3">

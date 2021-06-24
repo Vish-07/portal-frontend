@@ -86,7 +86,7 @@ h6 {
 }
 
 .shadow {
-  box-shadow: -7px -6px 10px 0px rgba(0, 0, 0, 0.73);
   -webkit-box-shadow: -7px -6px 10px 0px rgba(0, 0, 0, 0.73);
   -moz-box-shadow: -7px -6px 10px 0px rgba(0, 0, 0, 0.73);
+  box-shadow: -7px -6px 10px 0px rgba(0, 0, 0, 0.73);
 }
